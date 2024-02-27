@@ -57,6 +57,31 @@
 				<!-- Main -->
 					<div id="main">
 
+						<section id="form" class="spotlights">
+							<form method="post" action="#">
+								<div class="col-6">
+									<select name="style" id="style-select" onchange="updateBeerList()">
+										<option value="">- Style -</option>
+										<option value="Lager">Lager</option>
+										<option value="Pale Ale">Pale Ale</option>
+										<option value="IPA">IPA</option>
+										<option value="Belgian">Belgian / Wheat</option>
+										<option value="Sour">Sour / Fruited</option>
+										<option value="Ginger Beer">Ginger Beer</option>
+										<option value="Dark Beer">Dark Beer</option>
+										<option value="Red Ale">Red Ale</option>
+									</select>
+
+									<select name="strength" id="strength-select" onchange="updateBeerList()">
+										<option value="">- Strength -</option>
+										<option value="Low">Low</option>
+										<option value="Normal">Normal</option>
+										<option value="High">High</option>
+									</select>
+								</div>
+							</form>
+						</section>
+
 						<!-- Two -->
 							<section id="beer-list" class="spotlights">
 								

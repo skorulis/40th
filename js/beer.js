@@ -1,12 +1,22 @@
 function updateBeerList() {
     let container = document.getElementById("beer-list");
+    container.innerHTML = "";
     
+    let style = selectedStyle()
+    let strRange = strengthRange()
+
     for(let i = 0; i <beers.length; ++i) {
         let beer = beers[i]
+        if (style && beer.filterStyle != style) {
+          continue;
+        }
+        if (strRange) {
+          if (beer.pct < strRange[0] || beer.pct > strRange[1]) {
+            continue;
+          }
+        }
         container.insertAdjacentHTML("beforeend", makeBeerElement(beer))
     }
-
-    console.log(container)
 }
 
 function makeBeerElement(beer) {
@@ -33,6 +43,23 @@ function makeBeerElement(beer) {
     </section>`
 }
 
+function selectedStyle() {
+  let elem = document.getElementById('style-select')
+  if (!elem) { return null }
+  return elem.value
+}
+
+function strengthRange() {
+  let elem = document.getElementById('strength-select')
+  if (!elem) { return null }
+  if (elem.value === "Low") {
+    return [0, 4]
+  } else if (elem.value === "Normal") {
+    return [4.1, 6]
+  } else if (elem.value === "High") {
+    return [6.1, 20]
+  }
+}
 
 let beers = [
     {
@@ -81,7 +108,7 @@ let beers = [
       "name": "Mountain Goat Aussie Wheat Beer",
       "pct": 4.2,
       "style": "Wheat Beer - Other",
-      "filterStyle": "Other",
+      "filterStyle": "Belgian",
       "notes": ["Wheat", "Thin", "Citrusy", "Clean", "Grassy"],
       "desc": "Made with locally-grown wheat, this beer isn’t just a riff on a classic; this is Aussie Wheat Beer.  In the can you'll find a slightly hazy brew, with notes of mandarin and pear and a crisp finish that's immensely refreshing."
     },
@@ -121,7 +148,7 @@ let beers = [
       "name": "Vilkmerges Vyšnių Kriek",
       "pct": 5.0,
       "style": "Fruit Beer",
-      "filterStyle": "Other",
+      "filterStyle": "Sour",
       "notes": ["Cherry", "Sweet", "Fruity", "Dark", "Sour"],
       "desc": "Vilkmerges brewmasters, following the traditions of XVIII century brewing, released the first Lithuanian Kriek type ale – deep cherry colour, aroma and sweet and sour taste. Matured beer becomes light, subtle Lithuanian Cherry Kriek with berries‘ scent.<br/>This ale is perfect with chocolate and its deserts, cheesecake. It complements Panna cotta and fresh cheese, like mascarpone and others "
     },
@@ -221,7 +248,7 @@ let beers = [
       "name": "Bracket Long Game",
       "pct": 6.6,
       "style": "Bock - Hell / Maibock / Lentebock",
-      "filterStyle": "Other",
+      "filterStyle": "Dark Beer",
       "notes": ["Malty", "Toasty", "Bread", "Clean", "Dry"],
       "desc": "Long Game has been brewed with all continental European malts. Malt driven but still crisp. A favourite here at the brewery"
     },
@@ -331,7 +358,7 @@ let beers = [
       "name": "Philter Old ale",
       "pct": 4.5,
       "style": "Old / Stock Ale",
-      "filterStyle": "Other",
+      "filterStyle": "Dark Beer",
       "notes": ["Roasty", "Light Bodied", "Chocolate", "Earthy", "Bitter"],
       "desc": "This is our take on a classic Aussie old. It’s a brewery ale crafted using roasted malts for a rich flavour full of chocolate and coffee notes with a medium bitter finish. It’s smooth, it’s dark, it’s old-school."
     },
@@ -341,7 +368,7 @@ let beers = [
       "name": "Philter Red",
       "pct": 4.8,
       "style": "Red Ale - Other",
-      "filterStyle": "Other",
+      "filterStyle": "Red Ale",
       "notes": ["Malty", "Hoppy", "Caramelly", "Fruity", "Toffee"],
       "desc": "Here she is: Our big, punchy, red ale. Full of bold, hop aromas, this beer is loaded with passionfruit, melon, and citrus. And even berry notes. A light crystal malt character and medium bitterness to finish make this a ripper of a session ale.<br /><br />Hops: Cascade, Galaxy, Mosaic, Citra"
     },
@@ -354,26 +381,6 @@ let beers = [
       "filterStyle": "Pale Ale",
       "notes": ["Hazy", "Citrus", "Light Bodied", "Juicy", "Quaffable"],
       "desc": "Here’s our Hazy Pale. With all the flavour you expect from a haze and the signature refreshment of our pales, this one is a juicy, easy-drinking gem.<br/>You can expect tropical fruit, floral, melon and lemon-lime aromas.<br /><br />Hops: Cashmere, Idaho, Citra, Mosaic"
-    },
-    {
-      "link": "https://untappd.com/b/two-mates-brewing-lager-than-life/4646606",
-      "img": "two-mates-lager-than-life.jpg",
-      "name": "Two Mates Lager Than Life",
-      "pct": 4.8,
-      "style": "Lager - Pale",
-      "filterStyle": "Lager",
-      "notes": ["Malty", "Clean", "Sweet", "Herbal", "Crisp"],
-      "desc": "A refreshing Lager, light on the palate and with a crisp finish. The addition of rice syrup results in a dry mouthfeel, with a small portion of the noble hop Saaz, to achieve a slightly herbal and earthy flavour.<br/><br/>Malt: Pale Malt, Rice Syrup, Carapils<br/><br/>Hops: Saaz"
-    },
-    {
-      "link": "https://untappd.com/b/endeavour-brewing-co-rockstar-pale-ale/3321258",
-      "img": "endeavour-rockstar-pale-ale.jpg",
-      "name": "Endeavour Rockstar Pale Ale",
-      "pct": 4.5,
-      "style": "Pale Ale - Australian",
-      "filterStyle": "Pale Ale",
-      "notes": ["Hoppy", "Citrus", "Light Bodied", "Refreshing", "Clean"],
-      "desc": "This beer is the Star of the rocks, a sessionable but flavourful Australian Pale Ale, born and bred in Sydney"
     },
     {
       "link": "https://untappd.com/b/the-bondi-brewing-co-bondi-thicc/4021171",
@@ -461,7 +468,7 @@ let beers = [
         "name": "Yullis Dolly Aldrin - Strawberry Berliner Weisse",
         "pct": 3.4,
         "style": "Sour - Fruited Berliner Weisse",
-        "filterStyle": "Other",
+        "filterStyle": "Sour",
         "notes": ["Strawberry", "Sour", "Tart", "Sweet", "Dry"],
         "desc": "A traditional German style sour wheat ale, where low alcohol, tartness, and fruit combine to create the ultimate quencher! The beer undergoes a 24 hour period of lacto-fermentation where all the souring takes place, before being fermented as normal, and finally blended with freshly cold pressed Strawberries. The result is a deliciously fresh light and dry ale, with some upfront tartness, which is rounded out by the juicy fruit flavours."
     },
