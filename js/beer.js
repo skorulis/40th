@@ -383,6 +383,26 @@ let beers = [
       "desc": "Here’s our Hazy Pale. With all the flavour you expect from a haze and the signature refreshment of our pales, this one is a juicy, easy-drinking gem.<br/>You can expect tropical fruit, floral, melon and lemon-lime aromas.<br /><br />Hops: Cashmere, Idaho, Citra, Mosaic"
     },
     {
+      "link": "https://untappd.com/b/two-mates-brewing-lager-than-life/4646606",
+      "img": "two-mates-lager-than-life.jpg",
+      "name": "Two Mates Lager Than Life",
+      "pct": 4.8,
+      "style": "Lager - Pale",
+      "filterStyle": "Lager",
+      "notes": ["Malty", "Clean", "Sweet", "Herbal", "Crisp"],
+      "desc": "A refreshing Lager, light on the palate and with a crisp finish. The addition of rice syrup results in a dry mouthfeel, with a small portion of the noble hop Saaz, to achieve a slightly herbal and earthy flavour.<br/><br/>Malt: Pale Malt, Rice Syrup, Carapils<br/><br/>Hops: Saaz"
+    },
+    {
+      "link": "https://untappd.com/b/endeavour-brewing-co-rockstar-pale-ale/3321258",
+      "img": "endeavour-rockstar-pale-ale.jpg",
+      "name": "Endeavour Rockstar Pale Ale",
+      "pct": 4.5,
+      "style": "Pale Ale - Australian",
+      "filterStyle": "Pale Ale",
+      "notes": ["Hoppy", "Citrus", "Light Bodied", "Refreshing", "Clean"],
+      "desc": "This beer is the Star of the rocks, a sessionable but flavourful Australian Pale Ale, born and bred in Sydney"
+    },
+    {
       "link": "https://untappd.com/b/the-bondi-brewing-co-bondi-thicc/4021171",
       "img": "bondi-thicc.png",
       "name": "Bondi Thicc",
